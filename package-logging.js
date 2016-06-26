@@ -9,25 +9,30 @@
 // excessively. So how do you avoid injecting loggers while leaving the configuration of the loggers
 // to the using application?
 //
-// Consider this. Let’s say you have a package of code where you want to log things. In your app,
-// you set up the logger the way you want. Then in your package, you have a module called `logging`,
-// to which you inject your logger as follows:
+// Consider this. Let’s say you have a package of code where you want to log things. So you add a
+// module named `logging.js` where you retrieve a logging scope unique to the package, and expose
+// the `use()` function and the `logger`.
+//
+// ```
+// const packageLogging = require('../package-logging');
+// const loggingSetup = packageLogging.scope('my-package');
+// exports.use = loggingSetup.use;
+// exports.logger = loggingSetup.logger;
+// ```
+//
+// Then, in your app, you set up the logger the way you want by requiring this module:
 //
 // ```
 // const convoflowLogging = require('convoflow/logging');
 // convoflowLogging.use(logger); // the already configured logger
 // ```
 //
-// This makes the logger available to any piece of code within the package that wants to log things.
+// This makes the logger available anywhere within your package you want to log things:
 //
 // ```
 // const log = require('../logging').logger; // same module as above
 // log.trace('I did something');
 // ```
-//
-// The logging module in a package just needs to require this module, retrieve a logging scope and
-// expose the `use()` function and the `logger`. This allows the party using the package to set a
-// logger to be used (which is optional). And it allows the package itself to log things.
 
 module.exports = exports = {scope};
 
