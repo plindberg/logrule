@@ -1,0 +1,26 @@
+{
+  "name": "logrule",
+  "version": "0.0.1",
+  "description": "Rule your (Bunyan) logs.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monieshq/logrule.git"
+  },
+  "scripts": {
+    "test": "npm run test:test && npm run test:lint",
+    "test:lint": "eslint .",
+    "test:test": "mocha --recursive --require test/support/mocha-setup"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "chai": "3.5.0",
+    "common-project": "github:monieshq/common-project#06475d1",
+    "eslint": "2.13.1",
+    "mocha": "2.5.3",
+    "mockery": "1.7.0",
+    "sinon": "1.17.4",
+    "sinon-chai": "2.8.0"
+  }
+}
