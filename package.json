@@ -17,10 +17,10 @@
   "devDependencies": {
     "chai": "3.5.0",
     "common-project": "github:monieshq/common-project#06475d1",
-    "eslint": "2.13.1",
-    "mocha": "2.5.3",
+    "eslint": "3.4.0",
+    "mocha": "3.0.2",
     "mockery": "1.7.0",
-    "sinon": "1.17.4",
+    "sinon": "1.17.5",
     "sinon-chai": "2.8.0"
   }
 }
