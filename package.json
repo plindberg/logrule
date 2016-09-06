@@ -1,6 +1,6 @@
 {
   "name": "logrule",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Rule your (Bunyan) logs.",
   "license": "UNLICENSED",
   "repository": {

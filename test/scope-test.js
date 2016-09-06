@@ -5,7 +5,7 @@ const {expect} = require('chai');
 const mockery = require('mockery');
 const sinon = require('sinon');
 
-describe('Package logging', () => {
+describe('Package logging scopes', () => {
   beforeEach(() => {
     mockery.enable({useCleanCache: true, warnOnUnregistered: false});
   });
