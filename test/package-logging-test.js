@@ -1,8 +1,7 @@
 /* eslint-env node, mocha */
-
 'use strict';
 
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const mockery = require('mockery');
 const sinon = require('sinon');
 
@@ -15,8 +14,8 @@ describe('Package logging', () => {
     mockery.disable();
   });
 
-  it('provides no-op logging methods when not set up', () => {
-    const logger = require('./one-logger').logger;
+  it('Provides no-op logging methods when not set up', () => {
+    const {logger} = require('./one-logger');
     logger.trace('trace');
     logger.debug('debug');
     logger.info('info');
@@ -26,7 +25,7 @@ describe('Package logging', () => {
     expect(logger).to.have.keys('trace', 'debug', 'info', 'warn', 'error', 'fatal');
   });
 
-  it('uses the configured logger', () => {
+  it('Uses the configured logger', () => {
     const logging = require('./one-logger');
     const logger = logging.logger;
 
@@ -37,14 +36,14 @@ describe('Package logging', () => {
     expect(logger).to.have.keys('trace', 'debug', 'info', 'warn', 'error', 'fatal');
 
     logger.trace('this happened');
-    logger.debug({a:1, b:2}, 'debugging away');
+    logger.debug({a:1, b:2}, 'debugging');
     logger.info('note this');
     logger.warn('watch %s', 'out');
     logger.error(new Error(), 'crap');
     logger.fatal('run!!!');
 
     expect(configuredLogger.trace).to.have.been.calledWith('this happened');
-    expect(configuredLogger.debug).to.have.been.calledWith(sinon.match.object, 'debugging away');
+    expect(configuredLogger.debug).to.have.been.calledWith(sinon.match({a:1, b:2}), 'debugging');
     expect(configuredLogger.info).to.have.been.calledWith('note this');
     expect(configuredLogger.warn).to.have.been.calledWith('watch %s', 'out');
     expect(configuredLogger.error).to.have.been.calledWith(sinon.match.instanceOf(Error), 'crap');
@@ -55,7 +54,7 @@ describe('Package logging', () => {
     });
   });
 
-  it('keeps multiple loggers apart', () => {
+  it('Keeps multiple loggers apart', () => {
     const logging1 = require('./one-logger'), logger1 = logging1.logger;
     const logging2 = require('./other-logger'), logger2 = logging2.logger;
 
